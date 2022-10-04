@@ -9,7 +9,7 @@ export function useCourseDetail(id: string | undefined) {
     async function fetchCourse() {
         try {
             const response =
-                await axiosInstance.get<EducationCourse>('api/v1/school/course/' + id + '/')
+                await axiosInstance.get<EducationCourse>('education/course/' + id + '/')
             setCourses(response.data)
         } catch (e) {
             console.log(e)
@@ -20,4 +20,20 @@ export function useCourseDetail(id: string | undefined) {
         fetchCourse()
     }, [])
     return {course}
+}
+
+export function followCourse(id: string | undefined) {
+    try {
+        const response =
+            axiosInstance.post('education/course/' + id + '/follow/'
+            ).catch(function (error) {
+                console.log(error)
+                if (error.response.status === 401) {
+                    // open()
+                }
+            })
+        console.log(response)
+    } catch (e) {
+        const error = e as AxiosError
+    }
 }

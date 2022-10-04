@@ -5,12 +5,12 @@ const baseURL = 'http://127.0.0.1:8000/'
 export const axiosInstance = axios.create({
     baseURL: baseURL,
     timeout: 5000,
-    // headers: {
-    //     Authorization: localStorage.getItem('access_token') ?
-    //         'Bearer ' + localStorage.getItem('access_token') : false,
-    //     'Content-Type': 'application/json',
-    //     accept: 'application/json',
-    // },
+    headers: {
+        Authorization: localStorage.getItem('access_token') ?
+            'Bearer ' + localStorage.getItem('access_token') : false,
+        'Content-Type': 'application/json',
+        accept: 'application/json',
+    },
 })
 
 axiosInstance.interceptors.response.use(
@@ -54,7 +54,7 @@ axiosInstance.interceptors.response.use(
 
                 if (tokenParts.exp > now) {
                     return axiosInstance
-                        .post('api/v1/token/refresh/', {
+                        .post('api/token/refresh/', {
                             refresh: refreshToken,
                         })
                         .then((response) => {

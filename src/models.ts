@@ -40,11 +40,11 @@ export interface PaginationTask {
     results: EducationTask[]
 }
 
-export interface Student {
+export interface User {
     email: string,
     first_name: string,
     last_name: string,
+    patronymic: string,
     image: string,
-    date_joined: string,
-    is_superuser: boolean
+    is_staff: boolean
 }
