@@ -13,7 +13,7 @@ export function CategoryDetailPage(){
     return(
         <div className="flex mx-auto max-w-screen-xl pt-5 ml-6">
             <CategoriesSidebar id={id}/>
-            <div className="container">
+            <div className="max-w-screen-2xl gap-10 grid grid-cols-3">
                 {courses.map(course => <Course course={course} key={course.id}/>)}
             </div>
         </div>

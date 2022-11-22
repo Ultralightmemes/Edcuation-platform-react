@@ -1,3 +1,5 @@
+import TestOptions from "node:test";
+
 export interface EducationCourse {
     id: number,
     name: string,
@@ -18,26 +20,65 @@ export interface EducationCategory {
 
 export interface EducationTheme {
     id: number,
-    theme_name: string,
+    title: string,
     theme_description: string,
-    task: EducationTask[]
+    lessons: EducationLesson[]
 }
 
 export interface EducationTask {
     id: number,
-    task_name: string,
-    task_header: string,
-    task_info: string,
-    teacher_file: string,
-    task_succeed: boolean,
-    task_send: boolean,
+    title: string,
+    position: number,
+    text: string,
+    classname: string
+    options: EducationOption[],
+    radio: boolean,
 }
 
-export interface PaginationTask {
-    count: number
-    next: string
-    previous: string
-    results: EducationTask[]
+export interface EducationLesson {
+    id: number,
+    exercises: EducationTask[],
+    tests: EducationTask[],
+    next_lesson: string,
+    previous_lesson: string,
+    title: string,
+    video: string,
+    update_date: string,
+    text: string,
+    theme: number,
+    position: number,
+    classname: string
+}
+
+export interface EducationExercise {
+    id: number,
+    title: string,
+    position: number,
+    text: string,
+    classname: string
+}
+
+export interface EducationTest {
+    id: number,
+    title: string,
+    position: number,
+    text: string,
+    classname: string
+}
+
+export interface EducationOption {
+    id: number
+    text: string
+}
+
+export interface ExerciseAnswer {
+    id: string
+    answer: string
+}
+
+export interface TestAnswer {
+    id: string
+    answers: string[]
 }
 
 export interface User {

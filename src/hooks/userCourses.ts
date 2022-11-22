@@ -2,23 +2,15 @@ import {EducationCourse} from "../models";
 import {useEffect, useState} from "react";
 import {axiosInstance} from "../axios";
 
-export function useCourses(id?: string, studying?: boolean, filter?: string){
+export function useUserCourses(){
     const [courses, setCourses] = useState<EducationCourse[]>([])
 
 
     async function fetchCourses() {
-        let url = ''
-        if (id)
-            url = 'education/category/' + id + '/'
-        else if (studying)
-            url = 'education/course/my/'
-        else if (filter)
-            url = 'education/course/?search=' + filter
-        else
-            url = 'education/course/'
         try {
+
             const response =
-                await axiosInstance.get<EducationCourse[]>(url)
+                await axiosInstance.get<EducationCourse[]>('education/course/my/')
             console.log(response)
             setCourses(response.data)
         } catch (e) {
